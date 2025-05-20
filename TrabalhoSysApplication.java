@@ -19,15 +19,15 @@ public class TrabalhoSysApplication {
 	@Component
 class EntradadeDadosConsole2 implements CommandLineRunner {
 
-	@Override
-		public void run(String... args) throws Exception{
-		Scanner scanner = new Scanner(System.in);
-		String continuar;
+		@Override
+		public void run(String... args) throws Exception {
+			Scanner scanner = new Scanner(System.in);
+			String continuar;
 
-		do{
-			System.out.println("\n--- ");
+			do {
+				System.out.println("\n--- ");
+			}
+
+
 		}
-
-
-	}
 	}
