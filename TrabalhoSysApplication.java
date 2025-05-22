@@ -10,7 +10,9 @@ import java.util.Scanner;
 @SpringBootApplication
 public class TrabalhoSysApplication {
 
+
 	public static void main(String[] args) {
+
 		SpringApplication.run(TrabalhoSysApplication.class, args);
 	}
 
@@ -21,13 +23,9 @@ class EntradadeDadosConsole2 implements CommandLineRunner {
 
 		@Override
 		public void run(String... args) throws Exception {
+			System.setOut(new java.io.PrintStream(System.out, true, "UTF-8"));
+
 			Scanner scanner = new Scanner(System.in);
 			String continuar;
-
-			do {
-				System.out.println("\n--- ");
-			}
-
-
 		}
 	}

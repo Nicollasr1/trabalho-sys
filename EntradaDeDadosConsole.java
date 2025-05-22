@@ -16,13 +16,17 @@ public class EntradaDeDadosConsole implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        int opcao;
+
+        int opcao = -1;
         do {
-            System.out.println("\n Selecione a opção que deseja");
+            System.out.println("\nSelecione a opção que deseja");
             System.out.println("1 -> Cadastrar Equipamento");
             System.out.println("2 -> Devolução do Equipamento");
             System.out.println("3 -> Histórico Atualizado");
             System.out.println("0 -> Encerrar");
+            opcao = scanner.nextInt();
+            scanner.nextLine();
+
 
             switch (opcao) {
                 case 1 -> cadastrarEquipamentos();
@@ -39,38 +43,41 @@ public class EntradaDeDadosConsole implements CommandLineRunner {
         System.out.println("Nome do funcionário: ");
         String nome = scanner.nextLine();
 
-        String martelo = "Martelo - ID001";
-        String oculos = "Óculos de Proteção - ID002";
-        String trena = "Trena - ID003";
-        String luva = "Luva - ID004";
-        String fenda = "Chave de Fenda - ID0005";
+        String martelo = "Martelo";
+        String oculos = "Óculos de Proteção";
+        String trena = "Trena";
+        String luva = "Luva";
+        String fenda = "Chave de Fenda";
 
 
         System.out.println("\n Equipamentos Disponíveis:");
-        System.out.println(martelo);
-        System.out.println(oculos);
-        System.out.println(trena);
-        System.out.println(luva);
-        System.out.println(fenda);
+        System.out.println(martelo + " | Id: 1");
+        System.out.println(oculos + " | Id: 2");
+        System.out.println(trena + " | Id: 3");
+        System.out.println(luva + " | Id: 4");
+        System.out.println(fenda + " | Id: 5");
 
-        System.out.println("Digite o código do produto");
+
+        System.out.println("\n Digite o código do produto:");
         String codigo = scanner.nextLine().toUpperCase();
 
         String equipamentoSelecionado = null;
 
         switch (codigo) {
-            case "ID001" -> equipamentoSelecionado = martelo;
-            case "ID002" -> equipamentoSelecionado = oculos;
-            case "ID003" -> equipamentoSelecionado = trena;
-            case "ID004" -> equipamentoSelecionado = luva;
-            case "ID005" -> equipamentoSelecionado = fenda;
+            case "1" -> equipamentoSelecionado = martelo;
+            case "2" -> equipamentoSelecionado = oculos;
+            case "3" -> equipamentoSelecionado = trena;
+            case "4" -> equipamentoSelecionado = luva;
+            case "5" -> equipamentoSelecionado = fenda;
             default -> System.out.println("Código inválido!");
         }
         if (equipamentoSelecionado != null) {
-            System.out.println(nome + "pegou " + equipamentoSelecionado);
+            System.out.println(nome + " pegou " + equipamentoSelecionado);
+            cadastros.add(new Cadastro(nome, codigo, equipamentoSelecionado));
         }
-        cadastros.add(new Cadastro(nome, codigo, equipamentoSelecionado));
+
     }
+
         private void devolverEquipamento() {
             if (cadastros.isEmpty()) {
                 System.out.println("Nenhum equipamento cadastrado para devolução.");
@@ -79,12 +86,36 @@ public class EntradaDeDadosConsole implements CommandLineRunner {
 
             System.out.println("\n EQUIPAMENTOS EMPRESTADOS:");
             boolean algumEmprestado = false;
-            for (int i = 0; i < cadastros.size(); i++) {
-                Cadastro c = cadastros.get(i);
+
+            for (Cadastro c : cadastros) {
                 if (!c.isDevolvido()) {
-                    System.out.println((i + 1) + " - " + c);
+                    System.out.println(c);
                     algumEmprestado = true;
                 }
+            }
+            if (!algumEmprestado) {
+                System.out.println("Todos os equipamentos já foram devolvidos.");
+                return;
+            }
+
+            System.out.println("Informe o nome do funcionário: ");
+            String nome = scanner.nextLine();
+
+            System.out.println("Informe o código do equipamento que deseja devolver: ");
+            String equipamento = scanner.nextLine().toUpperCase();
+
+            boolean encontrado = false;
+
+            for (Cadastro c : cadastros) {
+                if (c.getNome().equalsIgnoreCase(nome) && c.getCodigo().equals(equipamento) && !c.isDevolvido()) {
+                    c.setDevolvido(true);
+                    System.out.println("Equipamento devolvido com sucesso!");
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (!encontrado) {
+                System.out.println("Equipamento não encontrado ou já devolvido!");
             }
         }
 

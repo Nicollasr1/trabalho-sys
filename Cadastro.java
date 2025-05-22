@@ -4,7 +4,7 @@ public class Cadastro {
     private String nome;
     private String codigo;
     private String equipamentoSelecionado;
-    private boolean devolvido;
+    private boolean devolvido = false;
 
     public Cadastro(String nome, String codigo, String equipamentoSelecionado) {
         this.nome = nome;
@@ -26,10 +26,7 @@ public class Cadastro {
     public void setDevolvido(boolean devolvido) { this.devolvido = devolvido;}
 
     @Override
-    public String toString() { return "Funcionário: " + nome +
-            "Equipamento: " + equipamentoSelecionado +
-            "Código: " + codigo +
-            "Devolvido: " + (devolvido ? "Sim" : "Não");
+    public String toString() { return "Funcionário: " + nome + " | Equipamento: " + equipamentoSelecionado + " | Código: " + codigo + " | Devolvido: " + (devolvido ? "Sim" : "Não");
     }
 
 }
