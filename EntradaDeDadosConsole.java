@@ -20,7 +20,7 @@ public class EntradaDeDadosConsole implements CommandLineRunner {
         int opcao = -1;
         do {
             System.out.println("\nSelecione a opção que deseja");
-            System.out.println("1 -> Cadastrar Equipamento");
+            System.out.println("1 -> Cadastrar Equipamento ao Funcionário");
             System.out.println("2 -> Devolução do Equipamento");
             System.out.println("3 -> Histórico Atualizado");
             System.out.println("0 -> Encerrar");
@@ -72,7 +72,7 @@ public class EntradaDeDadosConsole implements CommandLineRunner {
             default -> System.out.println("Código inválido!");
         }
         if (equipamentoSelecionado != null) {
-            System.out.println(nome + " pegou " + equipamentoSelecionado);
+            System.out.println(nome + " pegou: " + equipamentoSelecionado);
             cadastros.add(new Cadastro(nome, codigo, equipamentoSelecionado));
         }
 
