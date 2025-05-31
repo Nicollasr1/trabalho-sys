@@ -40,8 +40,17 @@ public class EntradaDeDadosConsole implements CommandLineRunner {
     }
 
     private void cadastrarEquipamentos() {
-        System.out.println("Nome do funcionário: ");
-        String nome = scanner.nextLine();
+        String nome;
+
+        while (true) {
+            System.out.println("Nome do funcionário: ");
+            nome = scanner.nextLine();
+            if (nome.matches("[\\p{L} ]+")) {
+                break;
+            } else {
+                System.out.println("Nome de funcionário Inválido" + "!");
+            }
+        }
 
         String martelo = "Martelo";
         String oculos = "Óculos de Proteção";
@@ -58,7 +67,7 @@ public class EntradaDeDadosConsole implements CommandLineRunner {
         System.out.println(fenda + " | Id: 5");
 
 
-        System.out.println("\n Digite o código do produto:");
+        System.out.println("\n Digite o código do equipamento:");
         String codigo = scanner.nextLine().toUpperCase();
 
         String equipamentoSelecionado = null;
