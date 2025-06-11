@@ -43,12 +43,13 @@ public class EntradaDeDadosConsole implements CommandLineRunner {
         String nome;
 
         while (true) {
+
             System.out.println("Nome do funcionário: ");
             nome = scanner.nextLine();
             if (nome.matches("[\\p{L} ]+")) {
                 break;
             } else {
-                System.out.println("Nome de funcionário Inválido" + "!");
+                System.out.println("Nome de funcionário Inválido !");
             }
         }
 
@@ -68,7 +69,7 @@ public class EntradaDeDadosConsole implements CommandLineRunner {
 
 
         System.out.println("\n Digite o código do equipamento:");
-        String codigo = scanner.nextLine().toUpperCase();
+        String codigo = scanner.nextLine();
 
         String equipamentoSelecionado = null;
 
@@ -86,6 +87,7 @@ public class EntradaDeDadosConsole implements CommandLineRunner {
         }
 
     }
+
 
         private void devolverEquipamento() {
             if (cadastros.isEmpty()) {

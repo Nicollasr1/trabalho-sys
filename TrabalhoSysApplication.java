@@ -25,7 +25,6 @@ class EntradadeDadosConsole2 implements CommandLineRunner {
 		public void run(String... args) throws Exception {
 			System.setOut(new java.io.PrintStream(System.out, true, "UTF-8"));
 
-			Scanner scanner = new Scanner(System.in);
-			String continuar;
+
 		}
 	}
